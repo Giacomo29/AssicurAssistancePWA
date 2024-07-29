@@ -1,0 +1,381 @@
+body {
+  background-color: #ffffff;  /*colore di sfondo
+  /* background-image: url('@/foto.jpg'); */ /* immagine di sfondo */
+  /* background-image: linear-gradient(rgba(230, 212, 212, 0.244), rgba(111, 186, 243, 0.269)); */
+  background-size: cover; /* adatta l'immagine allo schermo */
+  background-repeat: no-repeat; /* non ripetere l'immagine */
+}
+
+/* HOME */
+
+
+.carousel-indicators li::after {
+  content: none; /* Nasconde il punto dopo il numero */
+}
+
+
+.polizza-link {
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+.polizza-link:hover {
+  color: #000;
+}
+
+.carousel-control-next {
+  width: 10%;
+  top: calc(50% - 20px);
+  bottom: initial;
+  opacity: 0.5;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 40px;
+  width: 40px;
+  background-size: 100% 100%;
+}
+
+.carousel-control-prev {
+  color: #000000;
+  left: -10px;
+}
+
+.carousel-control-next {
+  color: #000000;
+  right: -10px;
+}
+
+.carousel-indicators {
+  margin-top: 20px;
+}
+
+.custom-card {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+}
+
+.custom-card .card-title {
+  color: #333;
+}
+
+.my-element {
+  padding-top: 25px;
+  /* Aggiunge uno spazio interno di 20px sopra il div */
+  padding-bottom: 25px;
+  background-color: #ededed;
+  /*background-color: #CEEAF9;*/ /* Esempio di colore di sfondo rosso (#ff0000) */
+  border-radius: 10px;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.icon_add_home {
+  width: 80px;
+  height: 80px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.contorno_compangnie {
+  border: 2px solid rgba(56, 222, 227, 0.628);
+}
+
+.icon_add_home:hover {
+  transform: scale(1.2);
+}
+
+.contorno_polizza {
+  border: 2px solid rgba(44, 31, 31, 0.447); /* Rosso con trasparenza */
+  /* Colore rosso */
+}
+
+/* ACCOUNT */
+
+
+
+.container_foto {
+  background-color: #cfcfcf;
+  max-width: 300px; /* Larghezza massima del contenitore */
+  margin: 0 auto; /* Centrare il contenitore */
+  overflow: hidden; /* Nascondi il contenuto eccedente */
+  margin-bottom: 20px;
+  /* inserisci un bordo */
+  border-style: solid;
+  border-color: azure;
+  border-radius: 10%;
+  
+}
+
+.image-wrapper_foto {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+  display: flex; /* Utilizza la flessione per centrare l'immagine */
+  justify-content: center; /* Centra l'immagine orizzontalmente */
+  align-items: center; /* Centra l'immagine verticalmente */
+  margin: auto;
+}
+
+.image-wrapper_foto img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.avatar-image {
+  max-width: 600px;
+  max-height: 600px;
+  object-fit: cover;
+  
+}
+
+
+body {
+  margin-top: 20px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+}
+
+/* CLIENTE */
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.icon_avatar {
+  width: 70px;
+  height: 70px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.icon_bin {
+  width: 5px;
+  height: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.icon_bin:hover {
+  transform: scale(1.2);
+}
+
+.icon_add_aggiungi {
+  width: 60px;
+  height: 60px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.icon_add_aggiungi:hover {
+  transform: scale(1.2);
+}
+
+.card-link {
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  color: #000;
+}
+
+/* CLIENTI */
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.text-primary {
+  color: #000;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-black {
+  color: #000;
+}
+
+.bg-light {
+  background-color: #f8f9fa;
+}
+
+.icon_bin {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.icon_bin:hover {
+  transform: scale(1.2);
+}
+
+/* COMPANGIA */
+
+.polizza-link {
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+.polizza-link:hover {
+  color: #000;
+}
+
+.my-element {
+  padding-top: 25px;
+  /* Aggiunge uno spazio interno di 20px sopra il div */
+  padding-bottom: 25px;
+  background-color: #ededed;
+
+  /* Esempio di colore di sfondo rosso (#ff0000) */
+  border-radius: 10px;
+}
+
+/* POLIZZA */
+
+.icon_semestrale {
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.icon_avatar {
+  width: 70px;
+  height: 70px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.card-link {
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  color: #000;
+}
+
+.download_icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 6px;
+  margin-right: 5px;
+}
+
+.download_icon:hover {
+  transform: scale(1.10);
+}
+
+/* VEICOLO */
+
+.bg-color-danger {
+  background-color: rgb(254, 166, 166); /* Colore rosso */
+}
+
+.bg-color-warning {
+  background-color: #fcfccc; /* Colore giallo */
+}
+
+.bg-color-light {
+  background-color: #d5ffd1; /* Colore grigio chiaro */
+}
+
+/* SCADENZE */
+.contorno_rosso {
+  border: 2px solid rgba(253, 0, 0, 0.628); /* Rosso con trasparenza */
+  /* Colore rosso */
+}
+
+.contorno_giallo {
+  border: 5px solid #eaea7a;
+  /* Colore giallo */
+}
+
+.contorno_verde {
+  border: 5px solid #9af892;
+}
+
+a {
+  text-decoration: none;
+  /* Rimuovi la sottolineatura */
+  color: inherit;
+  /* Eredità il colore dallo stile genitore (text-dark) */
+}
+
+a:hover {
+  text-decoration: none;
+  /* Rimuovi la sottolineatura anche al passaggio del mouse */
+  color: inherit;
+  /* Eredità il colore anche al passaggio del mouse */
+}
+
+
+/* NAVBAR */
+
+.icon_add_nav {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.icon_add_nav:hover {
+  transform: scale(1.10);
+}
+
+.avatar_image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden; /* Nascondi il contenuto oltre il bordo del cerchio */
+  border: 2px solid rgba(56, 222, 227, 0.628);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Aggiungi un'ombra leggera */
+  object-fit: cover; /* Taglia e adatta l'immagine al contenitore senza distorcerla */
+}
+
+
+.avatar_image:hover {
+  transform: scale(1.10);
+}
+
+
+
+
+
+

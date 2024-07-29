@@ -1,0 +1,362 @@
+
+L'obiettivo della PWA è quello di facilitare la gestione e il mantenimento delle polizze di un broker assicurativo.
+L'applicazione prevede una registrazione e un login con cui il broker può registrarsi ed usufruire del servizio offerto.
+Si prevedere poi l'aggiunta dei clienti dell'assicuratore, l'aggiunta di veicoli, l'aggiunta delle compagnie a piacimento e i 
+loro broker di cui l'assicuratore detiene il mandato. L'aggiunta in autonomia dei broker e delle compagnie rende il servizio 
+libero per ogni azienda. Si prevede poi che l'applicazioni informi l'assicuratore delle polizze in scadena e preveda anche di inoltrare 
+una email al cliente un mese prima dell'effettiva scadenza.
+
+
+API:
+
+
+GET /clienti/
+
+
+HTTP 200 OK   
+      {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "codice_fiscale": "CCCCCC",
+            "user": "admin",
+            "veicoli": [
+
+            ],
+            "nome": "Mario",
+            "cognome": "Rossi",
+            "email": "mariorossi@prova.it",
+            "telefono": "111111",
+            "indirizzo": "via verdi 99",
+            "citta": "Livorno",
+            "cap": "57100",
+            "provincia": "Li",
+            "data_nascita": "2001-01-29"
+        }
+    ]
+}
+
+HTTP 404 Not Found
+
+
+--------------------------------------------
+
+POST /clienti/
+
+HTTP 201 Created
+
+{
+    "codice_fiscale": "CCCCCC",
+    "user": "admin",
+    "veicoli": [],
+    "nome": "Mario",
+    "cognome": "Rossi",
+    "email": "mariorossi@prova.it",
+    "telefono": "111111",
+    "indirizzo": "via verdi 99",
+    "citta": "Livorno",
+    "cap": "57100",
+    "provincia": "Li",
+    "data_nascita": "2001-01-29"
+}
+
+HTTP 400 Bad Request
+
+
+
+--------------------------------------------
+
+GET /clienti/{codice_fiscale}
+
+HTTP 200 OK
+    {
+    "codice_fiscale": "CCCCCC",
+    "user": "admin",
+    "veicoli": [
+
+    ],
+    "nome": "Mario",
+    "cognome": "Rossi",
+    "email": "mariorossi@prova.it",
+    "telefono": "111111",
+    "indirizzo": "via verdi 99",
+    "citta": "Livorno",
+    "cap": "57100",
+    "provincia": "Li",
+    "data_nascita": "2001-01-29"
+}
+
+HTTP 403 Forbidden
+
+--------------------------------------------
+
+GET /veicoli/
+
+HTTP 200 OK
+
+    {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "targa": "XX999XX",
+            "user": "admin",
+            "marca": "ford",
+            "modello": "fiesta",
+            "cilindrata": "1200",
+            "alimentazione": "benzina",
+            "anno_immatricolazione": "2019-07-01",
+            "proprietario": "CCCCCC"
+        }
+    ]
+}
+
+
+HTTP 404 Not Found
+
+    []
+
+--------------------------------------------
+POST /veicoli/
+
+HTTP 201 Created
+
+        {
+            "targa": "XX999XX",
+            "user": "admin",
+            "marca": "ford",
+            "modello": "fiesta",
+            "cilindrata": "1200",
+            "alimentazione": "benzina",
+            "anno_immatricolazione": "2019-07-01",
+            "proprietario": "CCCCCC"
+        }
+
+HTTP 400 Bad Request
+
+--------------------------------------------
+
+GET /veicoli/{targa}
+
+HTTP 200 OK
+
+{
+    "targa": "XX999XX",
+    "user": "admin",
+    "marca": "ford",
+    "modello": "fiesta",
+    "cilindrata": "1200",
+    "alimentazione": "benzina",
+    "anno_immatricolazione": "2019-07-01",
+    "proprietario": "CCCCCC"
+}
+
+HTTP 403 Forbidden
+
+--------------------------------------------
+
+GET /broker/
+
+200 OK
+    
+{
+    "count": 3,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "nome": "Facile.it",
+            "user": "admin",
+            "note": ""
+        },
+        {
+            "nome": "PRIMOBROKER",
+            "user": "admin",
+            "note": "primo broker aggiunto"
+        },
+        {
+            "nome": "secondoBROKER",
+            "user": "admin",
+            "note": "secondo broker aggiunto"
+        }
+    ]
+}
+
+
+--------------------------------------------
+
+POST /broker/
+
+201 Created
+        {
+            "nome": "PRIMOBROKER",
+            "user": "admin",
+            "note": "primo broker aggiunto"
+        }
+
+400 Bad Request
+
+--------------------------------------------
+
+GET /broker/{nome}
+
+200 OK
+
+{
+    "nome": "PRIMOBROKER",
+    "user": "admin",
+    "note": "primo broker aggiunto"
+}
+
+403 Forbidden
+
+--------------------------------------------
+
+
+GET /compagnie/
+
+HTTP 200 OK
+
+    {
+        "count": 1,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "nome": "unipol Sai",
+                "user": "admin",
+                "telefono": "333",
+                "email": "prima@unipol.com",
+                "sito_web": "www.prova.com",
+                "broker": "PRIMOBROKER"
+            }
+        ]
+    }
+
+--------------------------------------------
+
+POST /compagnie/
+
+201 Created
+
+{
+    "nome": "unipol Sai",
+    "user": "admin",
+    "telefono": "333",
+    "email": "prima@unipol.com",
+    "sito_web": "www.prova.com",
+    "broker": "PRIMOBROKER"
+}
+
+400 Bad Request
+
+--------------------------------------------
+
+GET /compagnie/{nome}
+
+200 OK
+
+   {
+    "nome": "unipol Sai",
+    "user": "admin",
+    "telefono": "333",
+    "email": "prima@unipol.com",
+    "sito_web": "www.prova.com",
+    "broker": "PRIMOBROKER"
+    }
+
+403 Forbidden
+
+--------------------------------------------
+
+
+GET /polizze/
+
+200 OK
+
+   {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id_polizza": "12XX",
+            "user": "admin",
+            "cliente": {
+                "cognome": "Rossi",
+                "nome": "Mario",
+                "codice_fiscale": "CCCCCC"
+            },
+            "compagnia": "unipol Sai",
+            "note": "prima polizza emessa",
+            "semestrale": true,
+            "data_inizio": "2023-04-24",
+            "data_fine": "2023-10-24",
+            "data_fine_due": "2024-04-24",
+            "premio": 1000.0,
+            "veicolo": "XX999XX"
+        }
+    ]
+}
+
+404 Not Found
+
+    []
+
+
+--------------------------------------------
+
+POST /polizze/
+
+201 Created
+
+{
+    "id_polizza": "12XX",
+    "user": "admin",
+    "cliente": {
+        "cognome": "Rossi",
+        "nome": "Mario",
+        "codice_fiscale": "CCCCCC"
+    },
+    "compagnia": "unipol Sai",
+    "note": "prima polizza emessa",
+    "semestrale": true,
+    "data_inizio": "2023-04-24",
+    "data_fine": "2023-10-24",
+    "data_fine_due": "2024-04-24",
+    "premio": 1000.0,
+    "veicolo": "XX999XX"
+}
+
+400 Bad Request
+
+--------------------------------------------
+
+GET /polizze/{id_polizza}
+
+200 OK
+
+   {
+    "id_polizza": "12XX",
+    "user": "admin",
+    "cliente": {
+        "cognome": "Rossi",
+        "nome": "Mario",
+        "codice_fiscale": "CCCCCC"
+    },
+    "compagnia": "unipol Sai",
+    "note": "prima polizza emessa",
+    "semestrale": true,
+    "data_inizio": "2023-04-24",
+    "data_fine": "2023-10-24",
+    "data_fine_due": "2024-04-24",
+    "premio": 1000.0,
+    "veicolo": "XX999XX"
+}
+
+HTTP 403 Forbidden
+
+--------------------------------------------

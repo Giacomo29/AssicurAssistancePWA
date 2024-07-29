@@ -1,0 +1,869 @@
+openapi: 3.1.0
+info:
+  title: API per la Gestione delle Polizze di un Broker Assicurativo
+  description: |
+    Questa API consente la gestione e il mantenimento delle polizze di un broker assicurativo. Gli endpoint consentono la registrazione, il login, l'aggiunta di clienti, veicoli e compagnie assicurative, nonché la visualizzazione delle polizze e l'inoltro di avvisi di scadenza.
+  version: 1.0.0
+servers:
+  - url: https://assicurassistance.com/api/
+paths:
+  /clienti/:
+    get:
+      security:
+       - bearerAuth: []
+      summary: Elenco dei clienti
+      responses:
+        '200':
+          description: Elenco dei clienti
+          content:
+            application/json:
+              example:
+                count: 1
+                next: null
+                previous: null
+                results:
+                  - codice_fiscale: "CCCCCC"
+                    user: "admin"
+                    veicoli: []
+                    nome: "Mario"
+                    cognome: "Rossi"
+                    email: "mariorossi@prova.it"
+                    telefono: "111111"
+                    indirizzo: "via verdi 99"
+                    citta: "Livorno"
+                    cap: "57100"
+                    provincia: "Li"
+                    data_nascita: "2001-01-29"
+        '404':
+          description: Nessun cliente trovato
+    post:
+      summary: Aggiungi un nuovo cliente
+      responses:
+        '201':
+          description: Cliente creato con successo
+          content:
+            application/json:
+              example:
+                codice_fiscale: "CCCCCC"
+                user: "admin"
+                veicoli: []
+                nome: "Mario"
+                cognome: "Rossi"
+                email: "mariorossi@prova.it"
+                telefono: "111111"
+                indirizzo: "via verdi 99"
+                citta: "Livorno"
+                cap: "57100"
+                provincia: "Li"
+                data_nascita: "2001-01-29"
+        '400':
+          description: Richiesta non valida
+  /clienti/{codice_fiscale}/:
+    get:
+      summary: Dettagli del cliente
+      parameters:
+        - in: path
+          name: codice_fiscale
+          required: true
+          description: Codice fiscale del cliente
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dettagli del cliente
+          content:
+            application/json:
+              example:
+                codice_fiscale: "CCCCCC"
+                user: "admin"
+                veicoli: []
+                nome: "Mario"
+                cognome: "Rossi"
+                email: "mariorossi@prova.it"
+                telefono: "111111"
+                indirizzo: "via verdi 99"
+                citta: "Livorno"
+                cap: "57100"
+                provincia: "Li"
+                data_nascita: "2001-01-29"
+        '403':
+          description: Accesso non autorizzato
+  /clienti/cerca-per-cognome/{cognome}/:
+    get:
+      summary: Cerca cliente per cognome
+      parameters:
+        - in: path
+          name: cognome
+          required: true
+          description: Cognome del cliente
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dettagli del cliente
+          content:
+            application/json:
+              example:
+                codice_fiscale: "CCCCCC"
+                user: "admin"
+                veicoli: []
+                nome: "Mario"
+                cognome: "Rossi"
+                email: "mariorossi@prova.it"
+                telefono: "111111"
+                indirizzo: "via verdi 99"
+                citta: "Livorno"
+                cap: "57100"
+                provincia: "Li"
+                data_nascita: "2001-01-29"
+        '403':
+          description: Accesso non autorizzato
+  /clienti/cerca-per-targa/{targa}/:
+    get:
+      summary: Cerca cliente per targa veicolo
+      parameters:
+        - in: path
+          name: targa
+          required: true
+          description: Targa del veicolo
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dettagli del cliente
+          content:
+            application/json:
+              example:
+                codice_fiscale: "CCCCCC"
+                user: "admin"
+                veicoli: []
+                nome: "Mario"
+                cognome: "Rossi"
+                email: "mariorossi@prova.it"
+                telefono: "111111"
+                indirizzo: "via verdi 99"
+                citta: "Livorno"
+                cap: "57100"
+                provincia: "Li"
+                data_nascita: "2001-01-29"
+        '403':
+          description: Accesso non autorizzato
+  /veicoli/:
+    get:
+      summary: Elenco dei veicoli
+      responses:
+        '200':
+          description: Elenco dei veicoli
+          content:
+            application/json:
+              example:
+                count: 1
+                next: null
+                previous: null
+                results:
+                  - targa: "XX999XX"
+                    user: "admin"
+                    marca: "ford"
+                    modello: "fiesta"
+                    cilindrata: "1200"
+                    alimentazione: "benzina"
+                    anno_immatricolazione: "2019-07-01"
+                    proprietario: "CCCCCC"
+        '404':
+          description: Nessun veicolo trovato
+    post:
+      summary: Aggiungi un nuovo veicolo
+      responses:
+        '201':
+          description: Veicolo creato con successo
+          content:
+            application/json:
+              example:
+                targa: "XX999XX"
+                user: "admin"
+                marca: "ford"
+                modello: "fiesta"
+                cilindrata: "1200"
+                alimentazione: "benzina"
+                anno_immatricolazione: "2019-07-01"
+                proprietario: "CCCCCC"
+        '400':
+          description: Richiesta non valida
+  /veicoli/{targa}/:
+    get:
+      summary: Dettagli del veicolo
+      parameters:
+        - in: path
+          name: targa
+          required: true
+          description: Targa del veicolo
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dettagli del veicolo
+          content:
+            application/json:
+              example:
+                targa: "XX999XX"
+                user: "admin"
+                marca: "ford"
+                modello: "fiesta"
+                cilindrata: "1200"
+                alimentazione: "benzina"
+                anno_immatricolazione: "2019-07-01"
+                proprietario: "CCCCCC"
+        '403':
+          description: Accesso non autorizzato
+  /broker/:
+    get:
+      summary: Elenco dei broker
+      responses:
+        '200':
+          description: Elenco dei broker
+          content:
+            application/json:
+              example:
+                count: 3
+                next: null
+                previous: null
+                results:
+                  - nome: "Facile.it"
+                    user: "admin"
+                    note: ""
+                  - nome: "PRIMOBROKER"
+                    user: "admin"
+                    note: "primo broker aggiunto"
+                  - nome: "secondoBROKER"
+                    user: "admin"
+                    note: "secondo broker aggiunto"
+  /broker/{nome}/:
+    get:
+      summary: Dettagli del broker
+      parameters:
+        - in: path
+          name: nome
+          required: true
+          description: Nome del broker
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dettagli del broker
+          content:
+            application/json:
+              example:
+                nome: "PRIMOBROKER"
+                user: "admin"
+                note: "primo broker aggiunto"
+        '403':
+          description: Accesso non autorizzato
+  /compagnie/:
+    get:
+      summary: Elenco delle compagnie assicurative
+      responses:
+        '200':
+          description: Elenco delle compagnie assicurative
+          content:
+            application/json:
+              example:
+                count: 1
+                next: null
+                previous: null
+                results:
+                  - nome: "unipol Sai"
+                    user: "admin"
+                    telefono: "333"
+                    email: "prima@unipol.com"
+                    sito_web: "www.prova.com"
+                    broker: "PRIMOBROKER"
+        '404':
+          description: Nessuna compagnia assicurativa trovata
+    post:
+      summary: Aggiungi una nuova compagnia assicurativa
+      responses:
+        '201':
+          description: Compagnia assicurativa creata con successo
+          content:
+            application/json:
+              example:
+                nome: "unipol Sai"
+                user: "admin"
+                telefono: "333"
+                email: "prima@unipol.com"
+                sito_web: "www.prova.com"
+                broker: "PRIMOBROKER"
+        '400':
+          description: Richiesta non valida
+  /compagnie/{nome}/:
+    get:
+      summary: Dettagli della compagnia assicurativa
+      parameters:
+        - in: path
+          name: nome
+          required: true
+          description: Nome della compagnia assicurativa
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dettagli della compagnia assicurativa
+          content:
+            application/json:
+              example:
+                nome: "unipol Sai"
+                user: "admin"
+                telefono: "333"
+                email: "prima@unipol.com"
+                sito_web: "www.prova.com"
+                broker: "PRIMOBROKER"
+        '403':
+          description: Accesso non autorizzato
+  /polizze/:
+    get:
+      summary: Elenco delle polizze
+      responses:
+        '200':
+          description: Elenco delle polizze
+          content:
+            application/json:
+              example:
+                count: 1
+                next: null
+                previous: null
+                results:
+                  - id_polizza: "12XX"
+                    user: "admin"
+                    cliente:
+                      cognome: "Rossi"
+                      nome: "Mario"
+                      codice_fiscale: "CCCCCC"
+                    compagnia: "unipol Sai"
+                    note: "prima polizza emessa"
+                    semestrale: true
+                    data_inizio: "2023-04-24"
+                    data_fine: "2023-10-24"
+                    data_fine_due: "2024-04-24"
+                    premio: 1000.0
+                    veicolo: "XX999XX"
+        '404':
+          description: Nessuna polizza trovata
+    post:
+      summary: Aggiungi una nuova polizza
+      responses:
+        '201':
+          description: Polizza creata con successo
+          content:
+            application/json:
+              example:
+                id_polizza: "12XX"
+                user: "admin"
+                cliente:
+                  cognome: "Rossi"
+                  nome: "Mario"
+                  codice_fiscale: "CCCCCC"
+                compagnia: "unipol Sai"
+                note: "prima polizza emessa"
+                semestrale: true
+                data_inizio: "2023-04-24"
+                data_fine: "2023-10-24"
+                data_fine_due: "2024-04-24"
+                premio: 1000.0
+                veicolo: "XX999XX"
+        '400':
+          description: Richiesta non valida
+  /polizze/{id_polizza}/:
+    get:
+      summary: Dettagli della polizza
+      parameters:
+        - in: path
+          name: id_polizza
+          required: true
+          description: ID della polizza
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dettagli della polizza
+          content:
+            application/json:
+              example:
+                id_polizza: "12XX"
+                user: "admin"
+                cliente:
+                  cognome: "Rossi"
+                  nome: "Mario"
+                  codice_fiscale: "CCCCCC"
+                compagnia: "unipol Sai"
+                note: "prima polizza emessa"
+                semestrale: true
+                data_inizio: "2023-04-24"
+                data_fine: "2023-10-24"
+                data_fine_due: "2024-04-24"
+                premio: 1000.0
+                veicolo: "XX999XX"
+        '403':
+          description: Accesso non autorizzato
+  /polizze/scadenza-nel-mese/{month}/:
+    get:
+      summary: Elenco delle polizze in scadenza nel mese
+      parameters:
+        - in: path
+          name: month
+          required: true
+          description: Mese di riferimento
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Elenco polizze in scadenza 
+          content:
+            application/json:
+              example:
+                id_polizza: "12XX"
+                user: "admin"
+                cliente:
+                  cognome: "Rossi"
+                  nome: "Mario"
+                  codice_fiscale: "CCCCCC"
+                compagnia: "unipol Sai"
+                note: "prima polizza emessa"
+                semestrale: true
+                data_inizio: "2023-04-24"
+                data_fine: "2023-10-24"
+                data_fine_due: "2024-04-24"
+                premio: 1000.0
+                veicolo: "XX999XX"
+        '403':
+          description: Accesso non autorizzato
+  /polizze/cerca-per-cognome/{cognome}/:
+    get:
+      summary: Cerca polizza per cognome cliente
+      parameters:
+        - in: path
+          name: cognome
+          required: true
+          description: Cognome del cliente
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Elenco polizze trovate 
+          content:
+            application/json:
+              example:
+                id_polizza: "12XX"
+                user: "admin"
+                cliente:
+                  cognome: "Rossi"
+                  nome: "Mario"
+                  codice_fiscale: "CCCCCC"
+                compagnia: "unipol Sai"
+                note: "prima polizza emessa"
+                semestrale: true
+                data_inizio: "2023-04-24"
+                data_fine: "2023-10-24"
+                data_fine_due: "2024-04-24"
+                premio: 1000.0
+                veicolo: "XX999XX"
+        '403':
+          description: Accesso non autorizzato
+  /polizze/cerca-per-targa/{targa}/:
+    get:
+      summary: Cerca polizza per targa veicolo
+      parameters:
+        - in: path
+          name: targa
+          required: true
+          description: Targa del veicolo
+          schema:
+            type: string
+      responses:
+        responses:
+        '200':
+          description: Elenco polizze trovate 
+          content:
+            application/json:
+              example:
+                id_polizza: "12XX"
+                user: "admin"
+                cliente:
+                  cognome: "Rossi"
+                  nome: "Mario"
+                  codice_fiscale: "CCCCCC"
+                compagnia: "unipol Sai"
+                note: "prima polizza emessa"
+                semestrale: true
+                data_inizio: "2023-04-24"
+                data_fine: "2023-10-24"
+                data_fine_due: "2024-04-24"
+                premio: 1000.0
+                veicolo: "XX999XX"
+        '403':
+          description: Accesso non autorizzato
+  /polizze/cerca-per-codice-fiscale/{codice_fiscale}:
+    get:
+      summary: Cerca polizza per codice fiscale cliente
+      parameters:
+        - in: path
+          name: codice_fiscale
+          required: true
+          description: Codice fiscale del cliente
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Elenco polizze in scadenza 
+          content:
+            application/json:
+              example:
+                id_polizza: "12XX"
+                user: "admin"
+                cliente:
+                  cognome: "Rossi"
+                  nome: "Mario"
+                  codice_fiscale: "CCCCCC"
+                compagnia: "unipol Sai"
+                note: "prima polizza emessa"
+                semestrale: true
+                data_inizio: "2023-04-24"
+                data_fine: "2023-10-24"
+                data_fine_due: "2024-04-24"
+                premio: 1000.0
+                veicolo: "XX999XX"
+        '403':
+          description: Accesso non autorizzato
+        '404':
+          description: Nessuna polizza trovata per il codice fiscale specificato
+
+  /polizze/download_documenti/{id_polizza}/:
+    get:
+      summary: Scarica documenti relativi alla polizza
+      parameters:
+        - in: path
+          name: id_polizza
+          required: true
+          description: ID della polizza
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Documenti scaricati con successo
+
+  /polizze/{id_polizza}/modifica_documento/{id_documento}/:
+    post:
+      summary: Modifica documento relativo alla polizza
+      parameters:
+        - in: path
+          name: id_polizza
+          required: true
+          description: ID della polizza
+          schema:
+            type: string
+        - in: path
+          name: id_documento
+          required: true
+          description: ID del documento
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Documento modificato con successo
+          content:
+            application/json:
+              example: [] 
+  /polizze/{id_polizza}/elimina_documento/{id_documento}/:
+    delete:
+      summary: Elimina documento relativo alla polizza
+      parameters:
+        - in: path
+          name: id_polizza
+          required: true
+          description: ID della polizza
+          schema:
+            type: string
+        - in: path
+          name: id_documento
+          required: true
+          description: ID del documento
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Documento eliminato con successo
+  /polizze/aggiungi_documento/{id_polizza}/:
+    post:
+      summary: Aggiungi documento alla polizza
+      parameters:
+        - in: path
+          name: id_polizza
+          required: true
+          description: ID della polizza
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Documento aggiunto con successo
+  /compagnie-polizze/{compagnia}/:
+    get:
+      summary: Elenco delle polizze associate a una compagnia assicurativa
+      parameters:
+        - in: path
+          name: compagnia
+          required: true
+          description: Nome della compagnia assicurativa
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Elenco delle polizze associate alla compagnia
+          content:
+            application/json:
+              example:
+                id_polizza: "12XX"
+                user: "admin"
+                cliente:
+                  cognome: "Rossi"
+                  nome: "Mario"
+                  codice_fiscale: "CCCCCC"
+                compagnia: "unipol Sai"
+                note: "prima polizza emessa"
+                semestrale: true
+                data_inizio: "2023-04-24"
+                data_fine: "2023-10-24"
+                data_fine_due: "2024-04-24"
+                premio: 1000.0
+                veicolo: "XX999XX"
+        '403':
+          description: Accesso non autorizzato
+        '404':
+          description: Nessuna polizza trovata per il codice fiscale specificato
+
+  /user/:
+      post:
+        summary: Ottieni i dettagli dell'utente corrente
+        responses:
+          '200':
+            description: Dettagli dell'utente corrente
+            content:
+              application/json:
+                example: {
+                  {
+                    "id": 1,
+                    "username": "admin",
+                    "email": "prova@gmail.com",
+                    "nome": "Giacomo",
+                    "cognome": "Torbidoni",
+                    "avatar": "http://127.0.0.1:8000/media/images/avatar/1/2024-03-27_19.31.42.jpg"
+                  }
+                } 
+
+  /modifica-user/:
+    put:
+      summary: Modifica l'account dell'utente
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                nome:
+                  type: string
+                cognome:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Dati modificati con successo
+        '403':
+          description: Accesso non autorizzato
+        '500':
+          description: Errore nella modifica dei dati
+
+  /user/avatar/:
+      post:
+        summary: Modifica l'avatar dell'utente
+        responses:
+          '200':
+            description: Modifica dell'avatar dell'utente
+            content:
+              application/json:
+                example: {
+                  
+                    "avatar": "/media/images/avatar/1/2024-03-27_19.31.42.jpg"
+                  
+                } 
+
+  /register/:
+    get:
+      summary: Registra un nuovo utente
+      responses:
+        '200':
+          description: Registrazione dell'utente
+          content:
+            application/json:
+              example: 
+                user:
+                  id: 1
+                  username: admin
+                  email: prova@gmail.com
+                  nome: Giacomo
+                  cognome: Torbidoni
+                  avatar: http://127.0.0.1:8000/media/images/avatar/1/2024-03-27_19.31.42.jpg
+                access: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MTY0MjQ0LCJpYXQiOjE3MTUxNjQxODQsImp0aSI6IjlhNDdkZTNmNjk0MTQyZWI4MWIxOTgxYWEwZmMzOGRjIiwidXNlcl9pZCI6MX0.cDg6DCTv1fgquTtMMrhFnnKgmNK1dkQ7dn-77dRvBY8
+                refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNTMzNjk4NCwiaWF0IjoxNzE1MTY0MTg0LCJqdGkiOiI3MjViYTFjM2E2NGU0YzljYTkwNzRmNTUzYjVjYmE4NSIsInVzZXJfaWQiOjF9.9nea2tDLHpmp1WxkBuz1l8lUeIOTBvG9LhTaN4OFEm0
+        '500':
+          description: Errore nella registrazione
+  /entra/:
+    post:
+      summary: Accedi come utente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Accesso dell'utente
+          content:
+            application/json:
+              example:  {
+                        "user": {
+                          "id": 3,
+                          "username": "prova",
+                          "email": "giacomotorbidoni@gmail.it",
+                          "nome": "Jack",
+                          "cognome": "Torbidoni",
+                          "avatar": "http://assicurassistance.com/media/images/avatar/3/Ginger_european_cat_yMixulB.jpg"
+                        },
+                        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEzOTYxNDAzLCJpYXQiOjE3MTM5NjEzNDMsImp0aSI6ImJiZDE1MWJhNjQyZjQ1MDhhZGFkNGIxYTlmZWU4YzdjIiwidXNlcl9pZCI6M30.vztoIZcfb4X269uSg_wUIxJHD9bCwpOKmXlmA2ntVs0",
+                        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNDA0Nzc0MywiaWF0IjoxNzEzOTYxMzQzLCJqdGkiOiJiOGM1MzhkYmY5YTc0MjRjYTc5YmNhN2Q3ZWU5OTlhYSIsInVzZXJfaWQiOjN9.JrydVMug7S7G_0g1xbI9WpD5yg_r4qKmAVIWRZoYFJw"
+                      }
+  /token/refresh/:
+      get:
+        summary: Aggiorna il token JWT
+        responses:
+          '200':
+            description: Aggiornamento del token JWT
+            content:
+              application/json:
+                      example: { 
+                        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEzOTYxNDAzLCJpYXQiOjE3MTM5NjEzNDMsImp0aSI6ImJiZDE1MWJhNjQyZjQ1MDhhZGFkNGIxYTlmZWU4YzdjIiwidXNlcl9pZCI6M30.vztoIZcfb4X269uSg_wUIxJHD9bCwpOKmXlmA2ntVs0",
+                        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNDA0Nzc0MywiaWF0IjoxNzEzOTYxMzQzLCJqdGkiOiJiOGM1MzhkYmY5YTc0MjRjYTc5YmNhN2Q3ZWU5OTlhYSIsInVzZXJfaWQiOjN9.JrydVMug7S7G_0g1xbI9WpD5yg_r4qKmAVIWRZoYFJw"}
+
+  /user/change_password/{pk}/:
+      get:
+        summary: Cambia la password dell'utente
+        parameters:
+          - in: path
+            name: pk
+            required: true
+            description: ID dell'utente
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: Cambio della password dell'utente
+  /email-verify/:
+      get:
+        summary: Verifica l'email dell'utente
+        responses:
+          '200':
+            description: Verifica dell'email dell'utente
+
+  /request-reset-email/:
+    post:
+      summary: Richiedi un'email per il ripristino della password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Email per il recupero della password inviata
+        '400':
+          description: inserisci un indirizzo email valido
+  /password-reset/{uidb64}/{token}/:
+    get:  
+      summary: Verifica il token di ripristino password
+      parameters:
+        - in: path
+          name: uidb64
+          required: true
+          description: UID per il reset della password
+          schema:
+            type: string
+        - in: path
+          name: token
+          required: true
+          description: Token per il reset della password
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Verifica del token di ripristino password
+
+  /reset-complete/{uidb64}/{token}/:
+    patch:
+      summary: Reimposta la password dopo il ripristino
+      parameters:
+        - in: path
+          name: uidb64
+          required: true
+          description: UID per il reset della password
+          schema:
+            type: string
+        - in: path
+          name: token
+          required: true
+          description: Token per il reset della password
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Password reimpostata con successo
+        '400':
+          description: Richiesta non valida
+        '404':
+          description: Token non valido o utente non trovato
+        '500':
+          description: Errore interno del server
+
+
+  /esci/:
+      get:
+        summary: Disconnetti l'utente
+        responses:
+          '200':
+            description: Disconnessione dell'utente
+
+
